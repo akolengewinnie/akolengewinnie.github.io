@@ -21,6 +21,8 @@
     --font-b:   'Inter', system-ui, sans-serif;
     --font-c:   'Cormorant Garamond', Georgia, serif;
     --font-f:   'Outfit', system-ui, sans-serif;
+     --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--body); font-family: var(--font-b); font-weight: 400; line-height: 1.65; overflow-x: hidden; }
