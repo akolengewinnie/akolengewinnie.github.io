@@ -70,7 +70,7 @@ nav {
   }
   .hero h1 em {
     font-style: italic;
-    color: var(--teal);
+    color: var(--terra);
   }
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; position: relative; overflow: hidden; background: var(--bg); }
   .hero-texture { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(ellipse 70% 60% at 92% 10%, rgba(184,70,30,0.09) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 5% 80%, rgba(176,124,10,0.10) 0%, transparent 65%), radial-gradient(ellipse 40% 40% at 55% 50%, rgba(200,112,10,0.05) 0%, transparent 60%); }
