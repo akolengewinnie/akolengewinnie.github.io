@@ -60,6 +60,18 @@ nav {
   nav ul a:hover { color: var(--teal); }
 
   /* ── HERO ── */
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; position: relative; overflow: hidden; background: var(--bg); }
   .hero-texture { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(ellipse 70% 60% at 92% 10%, rgba(184,70,30,0.09) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 5% 80%, rgba(176,124,10,0.10) 0%, transparent 65%), radial-gradient(ellipse 40% 40% at 55% 50%, rgba(200,112,10,0.05) 0%, transparent 60%); }
   .hero-rule { width: 56px; height: 3px; background: var(--terra); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s ease 0.15s forwards; }
