@@ -60,6 +60,24 @@ nav {
   nav ul a:hover { color: var(--teal); }
 
   /* ── HERO ── */
+.hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--terra);
+  }
 .hero h1 {
     font-family: var(--serif);
     font-size: clamp(42px, 7vw, 76px);
@@ -79,7 +97,7 @@ nav {
   .hero-name { font-family: var(--font-c); font-size: clamp(54px, 9vw, 112px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; color: var(--ink); opacity: 0; animation: fadeUp 0.9s ease 0.42s forwards; }
   .hero-name em { font-style: normal; font-weight: 300; color: var(--terra); }
   .hero-title { font-family: var(--font-c); font-size: clamp(16px, 2.2vw, 24px); font-weight: 300;font-style: italic; color: var(--muted); margin-top: 1.5rem; opacity: 0; animation: fadeUp 0.9s ease 0.65s forwards; letter-spacing: -0.01em; }
-  .hero-desc { max-width: 560px; font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.8; margin-top: 1.6rem; opacity: 0; animation: fadeUp 0.9s ease 0.85s forwards; }
+  .hero-desc { max-width: 760px; font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.8; margin-top: 1.6rem; opacity: 0; animation: fadeUp 0.9s ease 0.85s forwards; }
   .hero-cta { display: flex; gap: 14px; margin-top: 2.4rem; opacity: 0; animation: fadeUp 0.9s ease 1.05s forwards; flex-wrap: wrap; }
   .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-b); font-size: 13px; font-weight: 500; letter-spacing: 0.07em; text-decoration: none; padding: 12px 26px; border-radius: 2px; transition: all 0.22s; cursor: pointer; border: none; }
   .btn-primary { background: var(--terra); color: #fff; }
