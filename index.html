@@ -1,874 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Winnie Akolenge – Product Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --cream: #F9F5EE;
-    --parchment: #F0EBE0;
-    --ink: #1C1A17;
-    --ink-muted: #4A4540;
-    --ink-faint: #8A8278;
-    --teal: #0F6E56;
-    --teal-light: #E1F5EE;
-    --teal-mid: #1D9E75;
-    --amber: #BA7517;
-    --amber-light: #FAEEDA;
-    --coral: #993C1D;
-    --coral-light: #FAECE7;
-    --border: rgba(28,26,23,0.12);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.75;
-    font-weight: 300;
-   
-  }
-
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(249,245,238,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--border);
-    padding: 0 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-  nav .brand {
-    font-family: var(--serif);
-    font-size: 18px;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-  }
-  nav ul { list-style: none; display: flex; gap: 28px; }
-  nav ul a {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--ink-muted);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  nav ul a:hover { color: var(--teal); }
-
-  /* HERO */
-  .hero {
-    margin: 0 auto;
-    padding: 100px 5vw 80px;
-   width:100%;
-  }
-  .hero-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--teal);
-    font-weight: 500;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: var(--teal);
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(42px, 7vw, 76px);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 28px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--teal);
-  }
-  .hero-intro {
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--ink-muted);
-    max-width: 620px;
-    font-weight: 300;
-    margin-bottom: 40px;
-  }
-  .hero-stats {
-    display: flex;
-    gap: 36px;
-    flex-wrap: wrap;
-    padding-top: 36px;
-    border-top: 0.5px solid var(--border);
-  }
-  .hero-stat {}
-  .hero-stat .num {
-    font-family: var(--serif);
-    font-size: 32px;
-    color: var(--ink);
-    display: block;
-    line-height: 1;
-  }
-  .hero-stat .label {
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-top: 4px;
-    display: block;
-  }
-
-  /* SECTION */
-  section {
-    width: 100%;
-    margin: 0 auto;
-    padding: 60px 5vw;
-  }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    font-weight: 500;
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 0.5px;
-    background: var(--border);
-  }
-
-  /* CASE STUDY CARDS */
-  .case-grid {
-    display: grid;
-    gap: 2px;
-  }
-  .case-card {
-    background: var(--parchment);
-    border-radius: 2px;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 340px;
-    transition: transform 0.25s ease;
-    border: 0.5px solid var(--border);
-  }
-  .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(28,26,23,0.07); }
-  .case-card.reverse { direction: rtl; }
-  .case-card.reverse > * { direction: ltr; }
-
-  .case-content {
-    padding: 52px 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .case-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-    width: fit-content;
-  }
-  .tag-fintech { background: var(--teal-light); color: var(--teal); }
-  .tag-food { background: var(--amber-light); color: var(--amber); }
-  .tag-infra { background: #EEF2F9; color: #185FA5; }
-  .tag-payments { background: var(--coral-light); color: var(--coral); }
-  .tag-qr { background: #EEEDFE; color: #534AB7; }
-  .tag-data { background: #F1EFE8; color: #444441; }
-
-  .case-content h2 {
-    font-family: var(--serif);
-    font-size: clamp(22px, 3vw, 30px);
-    line-height: 1.18;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .case-content p {
-    font-size: 15px;
-    color: var(--ink-muted);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 380px;
-  }
-  .case-meta {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .case-meta-item {}
-  .case-meta-item .meta-val {
-    font-family: var(--serif);
-    font-size: 20px;
-    color: var(--ink);
-    display: block;
-  }
-  .case-meta-item .meta-key {
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: block;
-  }
-
-  .case-visual {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-  }
-  .case-visual.teal-bg { background: var(--teal); }
-  .case-visual.amber-bg { background: #1C1A17; }
-  .case-visual.blue-bg { background: #0C447C; }
-  .case-visual.coral-bg { background: var(--coral); }
-  .case-visual.green-bg { background: #3B6D11; }
-
-  /* SVG illustrations inside cards */
-  .card-illustration { width: 100%; max-width: 260px; opacity: 0.9; }
-
-  /* SKILLS STRIP */
-  .skills-strip {
-    background: var(--ink);
-    color: #fff;
-    padding: 48px 5vw;
-  }
-  .skills-strip-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-  }
-  .skills-strip h3 {
-    font-family: var(--serif);
-    font-size: 28px;
-    color: #fff;
-    margin-bottom: 32px;
-    font-weight: 400;
-  }
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .skill-pill {
-    border: 0.5px solid rgba(255,255,255,0.2);
-    padding: 8px 18px;
-    border-radius: 40px;
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.02em;
-  }
-
-  /* PHILOSOPHY */
-  .philosophy {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 80px 5vw;
-    text-align: center;
-  }
-  .philosophy blockquote {
-    font-family: var(--serif);
-    font-size: clamp(24px, 4vw, 38px);
-    line-height: 1.25;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-    font-style: italic;
-    position: relative;
-  }
-  .philosophy blockquote::before {
-    content: '"';
-    font-size: 100px;
-    color: var(--teal-light);
-    position: absolute;
-    top: -20px;
-    left: -30px;
-    font-family: var(--serif);
-    line-height: 1;
-    z-index: -1;
-  }
-  .philosophy cite {
-    display: block;
-    margin-top: 24px;
-    font-style: normal;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  /* CONTACT */
-  .contact-bar {
-    border-top: 0.5px solid var(--border);
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 48px 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .contact-bar p {
-    font-size: 15px;
-    color: var(--ink-muted);
-  }
-  .contact-bar p strong {
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: var(--teal);
-    color: #fff;
-    padding: 12px 28px;
-    border-radius: 40px;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .cta-btn:hover { background: #0F5C47; }
-
-  footer {
-    padding: 24px 5vw;
-    text-align: center;
-    font-size: 12px;
-    color: var(--ink-faint);
-    border-top: 0.5px solid var(--border);
-  }
-
-  @media (max-width: 720px) {
-    .case-card, .case-card.reverse { grid-template-columns: 1fr; direction: ltr; }
-    .case-visual { min-height: 200px; }
-    nav ul { display: none; }
-    .hero-stats { gap: 24px; }
-  }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winnie Akolenge — Tech Product Manager</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="assets/css/font.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/theme2.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <a href="#" class="brand">Winnie Akolenge</a>
-  <ul>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">Product Manager · Storyteller · Builder</div>
-  <h1>Building products that<br/><em>move people forward.</em></h1>
-  <p class="hero-intro">
-    I'm a Tech Product Manager who sits at the intersection of people, technology, and markets.
-    My work spans fintech, embedded finance, and operations — building platforms that quietly do the heavy lifting so merchants, borrowers, and businesses can get on with living.
-  </p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="num">5+</span>
-      <span class="label">Products shipped</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">3</span>
-      <span class="label">Verticals</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">90%+</span>
-      <span class="label">SSO adoption</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">T+0</span>
-      <span class="label">Settlement target</span>
-    </div>
+  <nav>
+    <a href="#" class="brand">Winnie Akolenge</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-rule"></div>
+  <p class="hero-label">Technical Product Manager · Fintech · Storyteller · Builder</p>
+  <h1 class="hero-name">Winnie<br><em>Akolenge</em></h1>
+  <p class="hero-title">Building the infrastructure that moves money in Africa</p>
+  <p class="hero-desc">13 years at the intersection of product strategy, engineering, and emerging-market finance — shipping payments platforms, credit systems, and identity infrastructure that work for the people who need them most.</p>
+  <div class="hero-cta">
+    <a href="#work" class="btn btn-primary">View Case Studies ↓</a>
   </div>
+  <span class="hero-scroll">Scroll to explore</span>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats reveal">
+  <div class="stat-item"><div class="stat-num">13</div><div class="stat-label">Years in fintech product</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Major products shipped</div></div>
+  <div class="stat-item"><div class="stat-num">5+</div><div class="stat-label">African markets served</div></div>
+  <div class="stat-item"><div class="stat-num">60%</div><div class="stat-label">Platform performance gains</div></div>
 </div>
 
-<!-- WORK -->
-<section id="work">
-  <div class="section-label">Selected Work</div>
+<!-- ══ WORK ══ -->
+<section class="section" id="work">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Selected Work</p>
+      <h2 class="section-title">Case Studies</h2>
+    </div>
+    <p class="section-sub">From QR payments in Tanzania to regulatory automation in Kenya — stories of building things that matter.</p>
+  </div>
 
-  <div class="case-grid">
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="payments">Payments</button>
+    <button class="filter-btn" data-filter="credit">Credit &amp; Lending</button>
+    <button class="filter-btn" data-filter="infra">Infrastructure</button>
+    <button class="filter-btn" data-filter="data">Data &amp; Analytics</button>
+    <button class="filter-btn" data-filter="regtech">RegTech</button>
+  </div>
 
-    <!-- 1. MERCHANT CREDIT PLATFORM -->
-    <div class="case-card">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-fintech">Embedded Finance · Fintech</span>
-          <h2>Merchant Credit Platform — Scaling SME Lending</h2>
-          <p>
-            Merchants were trapped between slow manual approvals and alternative high-interest loans. I led the redesign of credit as an invisible, embedded experience — repayments flow directly from daily sales, CRB checks happen in seconds, and lending partners get real-time portfolio visibility. The result: a credit product that feels less like a loan and more like a natural extension of how merchants already do business.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">Days → Secs</span>
-            <span class="meta-key">Approval time</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">100%</span>
-            <span class="meta-key">CBK reporting accuracy</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">↓ Defaults</span>
-            <span class="meta-key">Automated repayments</span>
-          </div>
-        </div>
+  <div class="cs-grid reveal" id="cs-grid">
+
+    <!-- CARD 1 -->
+    <div class="cs-card" data-id="1" data-tags="payments infra" onclick="toggleCard(this)">
+      <p class="cs-tag c-terra"><span class="dot d-terra"></span>Payments · Infrastructure</p>
+      <p class="cs-number">01</p>
+      <h3 class="cs-title">Card Issuing &amp; Self-Acquiring Platform</h3>
+      <p class="cs-excerpt">Took Pesapal from payments processor to full-stack financial infrastructure provider — owning the entire card lifecycle from issuance to settlement.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-terra">+50%</span>
+        <span class="cs-metric-label">Projected increase in Total Payment Volume on owned infrastructure</span>
       </div>
-      <div class="case-visual teal-bg">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- dashboard representation -->
-          <rect x="20" y="20" width="200" height="160" rx="10" fill="rgba(255,255,255,0.08)"/>
-          <rect x="32" y="34" width="80" height="36" rx="6" fill="rgba(255,255,255,0.15)"/>
-          <text x="44" y="56" font-family="DM Sans,sans-serif" font-size="18" font-weight="500" fill="white">KSh 4.2M</text>
-          <rect x="120" y="34" width="88" height="36" rx="6" fill="rgba(255,255,255,0.1)"/>
-          <text x="131" y="56" font-family="DM Sans,sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">Portfolio</text>
-          <!-- bar chart -->
-          <rect x="32" y="90" width="16" height="68" rx="3" fill="rgba(255,255,255,0.2)"/>
-          <rect x="54" y="112" width="16" height="46" rx="3" fill="rgba(255,255,255,0.2)"/>
-          <rect x="76" y="100" width="16" height="58" rx="3" fill="rgba(255,255,255,0.4)"/>
-          <rect x="98" y="80" width="16" height="78" rx="3" fill="white"/>
-          <rect x="120" y="106" width="16" height="52" rx="3" fill="rgba(255,255,255,0.3)"/>
-          <rect x="142" y="90" width="16" height="68" rx="3" fill="rgba(255,255,255,0.2)"/>
-          <rect x="164" y="76" width="16" height="82" rx="3" fill="rgba(255,255,255,0.5)"/>
-          <rect x="186" y="82" width="16" height="76" rx="3" fill="rgba(255,255,255,0.6)"/>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-terra">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="1">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The challenge</p>
+          <p class="detail-p">Pesapal was entirely reliant on third-party issuers and acquirers — meaning <strong>high transaction costs, limited data visibility, and a fragmented customer experience</strong> across Openfloat, Drive, and Credit products. Every new feature required wrangling an external partner. Innovation was being outsourced.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">What I built</p>
+          <ul class="detail-list">
+            <li><strong>Card Issuing</strong> — virtual &amp; physical cards with customizable spend controls, geo-restrictions, and merchant category limits</li>
+            <li><strong>Self-Acquiring</strong> — merchant onboarding, online and POS payment acceptance, and a settlement engine</li>
+            <li><strong>Platform Layer</strong> — real-time ledger, reconciliation system, API suite, and analytics dashboard integrated across the full Pesapal ecosystem</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Execution</p>
+          <p class="detail-p">Three-phase rollout: <strong>Phase 1</strong> — virtual cards + online acquiring. <strong>Phase 2</strong> — physical cards, POS terminals, spend controls. <strong>Phase 3</strong> — intelligence layer (fraud detection, credit integration, behavioral insights). Cross-functional delivery spanning Engineering, Compliance, Partnerships, and Visa/Mastercard negotiations.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Projected impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-terra">+50%</div><div class="dm-label">Increase in Total Payment Volume</div></div>
+            <div class="dm-card"><div class="dm-num c-gold">25%</div><div class="dm-label">Reduction in transaction processing costs</div></div>
+            <div class="dm-card"><div class="dm-num c-teal">+20%</div><div class="dm-label">New revenue from interchange &amp; MDR</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Key learning</p>
+          <p class="detail-p">Owning payment infrastructure creates a <strong>long-term strategic moat</strong>. Ecosystem integration drives adoption faster than standalone products — and data ownership is the unlock for scaling financial services.</p>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 2. RESERVEPORT -->
-    <div class="case-card reverse">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-food">Hospitality · Operations</span>
-          <h2>Reserveport Restaurant — Unified Delivery Platform</h2>
-          <p>
-            When COVID-19 collapsed dine-in revenue overnight, restaurants were drowning in three separate tablets — one each for Uber Eats, Bolt Food, and Jumia Foods. I reframed the product challenge entirely: this wasn't about building another delivery app. It was about building a single operational control layer for fragmented ecosystems. The result gave restaurants back their sanity, their inventory accuracy, and crucially, their revenue.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">3 → 1</span>
-            <span class="meta-key">Dashboards unified</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">↓ Cancels</span>
-            <span class="meta-key">Real-time inventory sync</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">↑ Repeat orders</span>
-            <span class="meta-key">Voucher engine (60 days)</span>
-          </div>
-        </div>
+    <!-- CARD 2 -->
+    <div class="cs-card" data-id="2" data-tags="payments" onclick="toggleCard(this)">
+      <p class="cs-tag c-gold"><span class="dot d-gold"></span>Payments · Regulatory Partnerships</p>
+      <p class="cs-number">02</p>
+      <h3 class="cs-title">Scaling MOMO Payments via Interoperable QR (PayQR)</h3>
+      <p class="cs-excerpt">When Tanzania's TanQR standard arrived, only banks could issue QR codes. I found the partnership model that let a fintech win anyway.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-gold">1 QR</span>
+        <span class="cs-metric-label">Accepts all MOMO providers — Tigo, Vodacom, and beyond</span>
       </div>
-      <div class="case-visual amber-bg">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- 3 delivery logos flowing into one central node -->
-          <circle cx="40" cy="60" r="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="31" y="65" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.7)">Uber</text>
-          <circle cx="200" cy="60" r="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="186" y="65" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.7)">Bolt</text>
-          <circle cx="120" cy="30" r="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="108" y="35" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.7)">Jumia</text>
-          <!-- arrows to center -->
-          <line x1="58" y1="70" x2="100" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-          <line x1="182" y1="70" x2="140" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-          <line x1="120" y1="52" x2="120" y2="88" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-          <!-- central hub -->
-          <circle cx="120" cy="110" r="36" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/>
-          <text x="96" y="108" font-family="DM Serif Display,serif" font-size="11" fill="white">Control</text>
-          <text x="101" y="122" font-family="DM Serif Display,serif" font-size="11" fill="white">Center</text>
-          <!-- output arrow -->
-          <line x1="120" y1="148" x2="120" y2="168" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-          <polygon points="113,164 127,164 120,174" fill="rgba(255,255,255,0.6)"/>
-          <text x="86" y="188" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.6)">Restaurant Dashboard</text>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-gold">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="2">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The challenge</p>
+          <p class="detail-p">Merchants in Tanzania could only accept MOMO payments through direct integrations with Tigo and Vodacom. When the Bank of Tanzania introduced <strong>TanQR</strong> — a universal interoperability standard — it was a huge opportunity. But there was a hard catch: <strong>only banks could issue QR codes.</strong> Fintechs were locked out by regulation.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">The solution: partner, don't build around</p>
+          <p class="detail-p">Rather than fight the regulatory wall, I designed a <strong>bank partnership model</strong> that preserved the fintech's merchant ownership while leveraging the bank's regulatory standing.</p>
+          <div class="pull-quote">Merchant KYC shared with Mwangaza Bank → Bank issues TanQR tied to master account → QR mapped to merchants → Customer scans → pays via any MOMO → funds flow Bank → Fintech → Merchant.</div>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">What I owned</p>
+          <ul class="detail-list">
+            <li>Defined product strategy to leverage TanQR within regulatory constraints</li>
+            <li>Led the bank partnership and integration model design</li>
+            <li>Designed end-to-end payment and merchant onboarding flows</li>
+            <li>Scoped QR management, reconciliation, and notification systems</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-gold">100%</div><div class="dm-label">MOMO provider coverage with one QR code</div></div>
+            <div class="dm-card"><div class="dm-num c-teal">↓ 0</div><div class="dm-label">Unsupported payment failures at checkout</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">↑ GMV</div><div class="dm-label">Merchant growth from higher payment success</div></div>
+          </div>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 3. CARD ISSUING -->
-    <div class="case-card">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-payments">Payments · Strategy</span>
-          <h2>Card Issuing & Self-Acquiring Platform</h2>
-          <p>
-            Most fintechs start as payment processors. The bold move is owning the rails entirely. I defined the vision and roadmap for an in-house card issuing and acquiring platform — virtual and physical cards, programmable spend controls, and a settlement engine — that would transform the business from a processor into a full-stack financial infrastructure provider. The target: 30–50% uplift in total payment volume through owned rails within 24 months.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">+30–50%</span>
-            <span class="meta-key">TPV projection</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">–25%</span>
-            <span class="meta-key">Processing cost target</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">T+0/T+1</span>
-            <span class="meta-key">Settlement target</span>
-          </div>
-        </div>
+    <!-- CARD 3 -->
+    <div class="cs-card" data-id="3" data-tags="infra" onclick="toggleCard(this)">
+      <p class="cs-tag c-amber"><span class="dot d-amber"></span>Platform · Operations</p>
+      <p class="cs-number">03</p>
+      <h3 class="cs-title">Reserveport Restaurant — Unified Delivery &amp; Operations Platform</h3>
+      <p class="cs-excerpt">The pandemic forced restaurants into multi-tablet chaos. I reframed the problem and built the coordination layer they actually needed.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-amber">1</span>
+        <span class="cs-metric-label">Dashboard replacing Uber Eats, Bolt Food &amp; Jumia Food management silos</span>
       </div>
-      <div class="case-visual coral-bg">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- card illustration -->
-          <rect x="30" y="52" width="150" height="96" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
-          <!-- chip -->
-          <rect x="50" y="76" width="26" height="20" rx="3" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
-          <!-- card number dots -->
-          <circle cx="52" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="62" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="72" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="82" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="98" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="108" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="118" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="128" cy="114" r="3" fill="rgba(255,255,255,0.5)"/>
-          <text x="140" y="120" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">8842</text>
-          <!-- network logo area -->
-          <circle cx="158" cy="82" r="10" fill="rgba(255,255,255,0.2)"/>
-          <circle cx="170" cy="82" r="10" fill="rgba(255,255,255,0.12)"/>
-          <!-- shadow card behind -->
-          <rect x="48" y="64" width="150" height="96" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <!-- ecosystem labels -->
-          <text x="60" y="170" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">Openfloat · Drive · Credit</text>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-amber">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="3">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The context</p>
+          <p class="detail-p">COVID-19 collapsed dine-in revenue overnight. Restaurants scrambled onto every third-party delivery platform simultaneously — drowning in <strong>multi-tablet fatigue</strong> with no inventory sync between Uber Eats, Bolt Food, and Jumia Foods. Stock inconsistencies, high cancellation rates, and overwhelmed kitchen staff became the daily reality.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">The insight that changed the product</p>
+          <div class="pull-quote">"The real product wasn't another delivery app — it was a single source of truth for restaurant operations across all delivery platforms."</div>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">The strategic trade-off</p>
+          <p class="detail-p">We evaluated three paths: standalone delivery app, proprietary fleet, or a <strong>unified order and inventory orchestration layer</strong>. We chose the third — deliberately skipping a delivery fleet to maximize coverage and minimize overhead, integrating existing aggregators instead.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">What we shipped</p>
+          <ul class="detail-list">
+            <li><strong>Consumer experience</strong> — unified ordering interface, real-time menus, voucher engine to drive affordability during economic downturn</li>
+            <li><strong>Merchant command center</strong> — real-time inventory sync across all platforms, unified order management, automated stock updates via API</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Key learning</p>
+          <p class="detail-p">The true product was never food delivery — it was <strong>coordination infrastructure for fragmented ecosystems</strong>. Shipping during crisis required accepting controlled technical debt, but we got to market when restaurants needed us most.</p>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 4. SSO PLATFORM -->
-    <div class="case-card reverse">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-infra">Platform · Security</span>
-          <h2>Company-Wide SSO Platform</h2>
-          <p>
-            As a fintech scales its product suite, identity becomes the silent bottleneck. Multiple logins, manual provisioning, zero auditability — these aren't just UX problems, they're security and compliance liabilities. I led the design and rollout of a centralized SSO platform built on OAuth 2.0 and OpenID Connect, with full RBAC, multi-tenant support, and real-time audit logging. Within the first rollout window: 90%+ adoption, 40–60% fewer support tickets, and provisioning time cut by nearly 70%.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">90%+</span>
-            <span class="meta-key">Platform adoption</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">–60%</span>
-            <span class="meta-key">Support tickets</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">~70%</span>
-            <span class="meta-key">Faster provisioning</span>
-          </div>
-        </div>
+    <!-- CARD 4 -->
+    <div class="cs-card" data-id="4" data-tags="credit" onclick="toggleCard(this)">
+      <p class="cs-tag c-teal"><span class="dot d-teal"></span>Credit · Embedded Finance</p>
+      <p class="cs-number">04</p>
+      <h3 class="cs-title">Merchant Credit Platform — Scaling SME Lending</h3>
+      <p class="cs-excerpt">Merchant credit was a separate, interruptive process. I embedded it invisibly into the daily payment flow — transforming both adoption and default rates.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-teal">Days→Sec</span>
+        <span class="cs-metric-label">Loan approval time after real-time CRB integration</span>
       </div>
-      <div class="case-visual blue-bg">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- central IdP node -->
-          <circle cx="120" cy="100" r="34" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/>
-          <text x="104" y="97" font-family="DM Sans,sans-serif" font-size="11" fill="white" font-weight="500">Identity</text>
-          <text x="107" y="111" font-family="DM Sans,sans-serif" font-size="11" fill="white" font-weight="500">Provider</text>
-          <!-- spoke apps -->
-          <circle cx="44" cy="50" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="34" y="54" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Payments</text>
-          <line x1="60" y1="62" x2="90" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-
-          <circle cx="196" cy="50" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="184" y="54" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Dashboard</text>
-          <line x1="180" y1="62" x2="150" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-
-          <circle cx="44" cy="150" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="36" y="154" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Merchant</text>
-          <line x1="60" y1="138" x2="90" y2="120" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-
-          <circle cx="196" cy="150" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <text x="188" y="154" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Credit</text>
-          <line x1="180" y1="138" x2="150" y2="120" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-teal">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="4">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The problem</p>
+          <p class="detail-p">Merchant financing was fragmented and painful: slow approvals, manual repayments, limited lender visibility, and CBK reporting done entirely by hand. <strong>The entire credit lifecycle was leaking value at every step.</strong> Merchants regularly sought high-interest alternatives elsewhere.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">The key insight</p>
+          <div class="pull-quote">"Credit needs to be invisible, continuous, and embedded into merchant cash flow — not a separate, interruptive process."</div>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Five features that transformed the stack</p>
+          <ul class="detail-list">
+            <li><strong>Automated repayment from transactions</strong> — deductions directly from daily sales, eliminating manual effort</li>
+            <li><strong>Credit partner integration layer</strong> — real-time portfolio performance portal for banks and MFIs</li>
+            <li><strong>Real-time CRB checks</strong> — instant credit scoring; approvals from days to seconds</li>
+            <li><strong>Dynamic loan top-up engine</strong> — additional credit instantly based on repayment behavior</li>
+            <li><strong>CBK reporting automation</strong> — compliant Central Bank reports generated automatically</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-teal">↓ Days</div><div class="dm-label">Loan approval via automated CRB checks</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">↓ Risk</div><div class="dm-label">Late payments &amp; 30-day defaults reduced</div></div>
+            <div class="dm-card"><div class="dm-num c-gold">100%</div><div class="dm-label">CBK reporting accuracy, on-time</div></div>
+          </div>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 5. CASHY CREDIT CRB -->
-    <div class="case-card">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-fintech">Credit · Infrastructure</span>
-          <h2>Automating CRB Checks — Cashy Credit</h2>
-          <p>
-            A loan applicant who waits more than ten seconds starts looking elsewhere. Manual CRB checks were costing us conversions, increasing operational spend, and frustrating the very customers we were trying to serve. I designed a consent-driven, automated CRB integration with intelligent 30-day caching — turning creditworthiness checks from a bottleneck into a near-invisible moment. The expected outcome: 30–50% faster loan processing, 40% lower CRB costs, and a meaningfully better user experience.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">&lt;1 sec</span>
-            <span class="meta-key">CRB trigger speed</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">–40%</span>
-            <span class="meta-key">CRB cost target</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">+25%</span>
-            <span class="meta-key">Conversion target</span>
-          </div>
-        </div>
+    <!-- CARD 5 -->
+    <div class="cs-card" data-id="5" data-tags="data infra" onclick="toggleCard(this)">
+      <p class="cs-tag c-rust"><span class="dot d-rust"></span>Data &amp; Analytics · Platform</p>
+      <p class="cs-number">05</p>
+      <h3 class="cs-title">Apache Superset Upgrade — Analytics Platform Modernization</h3>
+      <p class="cs-excerpt">A v1-to-v5 platform upgrade spanning 4 workstreams and the entire analytics org. Not just an engineering task — a product transformation.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-rust">60%</span>
+        <span class="cs-metric-label">Reduction in dashboard load time after upgrade to v5.28.1</span>
       </div>
-      <div class="case-visual green-bg">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- funnel / pipeline -->
-          <rect x="60" y="20" width="120" height="28" rx="6" fill="rgba(255,255,255,0.2)"/>
-          <text x="82" y="38" font-family="DM Sans,sans-serif" font-size="11" fill="white">Apply Loan</text>
-          <line x1="120" y1="48" x2="120" y2="68" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <rect x="60" y="68" width="120" height="28" rx="6" fill="rgba(255,255,255,0.2)"/>
-          <text x="74" y="86" font-family="DM Sans,sans-serif" font-size="11" fill="white">Consent Check</text>
-          <line x1="120" y1="96" x2="120" y2="116" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <rect x="60" y="116" width="120" height="28" rx="6" fill="rgba(255,255,255,0.35)"/>
-          <text x="74" y="134" font-family="DM Sans,sans-serif" font-size="11" fill="white">Auto CRB Check</text>
-          <line x1="120" y1="144" x2="120" y2="164" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <rect x="60" y="164" width="120" height="28" rx="6" fill="white"/>
-          <text x="74" y="182" font-family="DM Sans,sans-serif" font-size="11" fill="#3B6D11" font-weight="500">Instant Decision</text>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-rust">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="5">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The bottleneck</p>
+          <p class="detail-p">Our Superset v1 deployment had become a bottleneck to data-driven decision-making. Dashboards timed out on large datasets. Permissions were confusing and risky. Business users depended too heavily on engineers for simple changes. <strong>Analyst productivity was down. Time-to-insight was up. Reliability was failing.</strong></p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Four workstreams, one vision</p>
+          <ul class="detail-list">
+            <li><strong>Platform modernization</strong> — core service upgrade, metadata DB migration, deprecated config refactoring</li>
+            <li><strong>Performance optimization</strong> — async queries, query caching, optimized DB connections, dashboard load monitoring</li>
+            <li><strong>Governance &amp; security</strong> — fine-grained RBAC, dataset-level permissions, audit logging</li>
+            <li><strong>UX &amp; analytics enablement</strong> — improved charting, semantic layer standardization, legacy dashboard cleanup</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Delivery approach</p>
+          <p class="detail-p">Five phases: Discovery → Staging environment with production-parity load testing → Controlled migration → Canary release → Gradual rollout with training. <strong>Incremental over big-bang</strong> — higher coordination cost, dramatically reduced risk.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Results</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-rust">60%</div><div class="dm-label">Faster dashboard load time</div></div>
+            <div class="dm-card"><div class="dm-num c-amber">45%</div><div class="dm-label">Query latency reduction</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">35%</div><div class="dm-label">Fewer Data Engineering support tickets</div></div>
+            <div class="dm-card"><div class="dm-num c-teal">50%</div><div class="dm-label">More active users across business teams</div></div>
+          </div>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 7. APACHE SUPERSET UPGRADE -->
-    <div class="case-card">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-data">Data · Platform · Internal Tools</span>
-          <h2>Apache Superset Upgrade — v1 → v5.28.1</h2>
-          <p>
-            Slow dashboards, query timeouts, and permissions nobody trusted — our analytics platform had quietly become the team's biggest frustration. But this wasn't just an engineering upgrade. It was a product transformation: turning a creaking v1 deployment into a governed, self-service analytics layer the whole business could rely on. I led the four-phase rollout — from version gap analysis and staging validation right through to canary release and adoption tracking — protecting data integrity while shipping speed, governance, and a UX that finally got out of analysts' way.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">↓ 60%</span>
-            <span class="meta-key">Dashboard load time</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">↓ 45%</span>
-            <span class="meta-key">Query latency</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">↑ 50%</span>
-            <span class="meta-key">Business team adoption</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">0</span>
-            <span class="meta-key">Security incidents post-launch</span>
-          </div>
-        </div>
+    <!-- CARD 6 -->
+    <div class="cs-card" data-id="6" data-tags="infra" onclick="toggleCard(this)">
+      <p class="cs-tag c-sage"><span class="dot d-sage"></span>Identity · Security · Infrastructure</p>
+      <p class="cs-number">06</p>
+      <h3 class="cs-title">Company-Wide SSO Platform — Internal &amp; Merchant Ecosystem</h3>
+      <p class="cs-excerpt">As the product ecosystem grew, authentication became a fragmented mess of logins, compliance gaps, and slow provisioning. I built the identity control layer.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-sage">90%+</span>
+        <span class="cs-metric-label">Product adoption across internal and merchant platforms</span>
       </div>
-      <div class="case-visual" style="background: #2C2C2A;">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- version arrow label -->
-          <text x="48" y="36" font-family="DM Sans,sans-serif" font-size="13" fill="rgba(255,255,255,0.4)" font-weight="500">v1</text>
-          <line x1="66" y1="31" x2="168" y2="31" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
-          <polygon points="164,26 174,31 164,36" fill="rgba(255,255,255,0.3)"/>
-          <text x="178" y="36" font-family="DM Sans,sans-serif" font-size="13" fill="rgba(255,255,255,0.9)" font-weight="500">v5.28.1</text>
-
-          <!-- dashboard frame -->
-          <rect x="30" y="48" width="180" height="114" rx="8" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-
-          <!-- top stat row -->
-          <rect x="40" y="58" width="46" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
-          <text x="50" y="71" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.5)">Load time</text>
-          <text x="48" y="82" font-family="DM Sans,sans-serif" font-size="10" fill="#9FE1CB" font-weight="500">↓ 60%</text>
-
-          <rect x="94" y="58" width="46" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
-          <text x="100" y="71" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.5)">Latency</text>
-          <text x="102" y="82" font-family="DM Sans,sans-serif" font-size="10" fill="#9FE1CB" font-weight="500">↓ 45%</text>
-
-          <rect x="148" y="58" width="52" height="28" rx="4" fill="rgba(255,255,255,0.1)"/>
-          <text x="153" y="71" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.5)">Adoption</text>
-          <text x="156" y="82" font-family="DM Sans,sans-serif" font-size="10" fill="#9FE1CB" font-weight="500">↑ 50%</text>
-
-          <!-- chart area -->
-          <rect x="40" y="94" width="90" height="56" rx="4" fill="rgba(255,255,255,0.05)"/>
-          <!-- bar chart inside -->
-          <rect x="48" y="122" width="8" height="22" rx="2" fill="rgba(255,255,255,0.2)"/>
-          <rect x="60" y="114" width="8" height="30" rx="2" fill="rgba(255,255,255,0.3)"/>
-          <rect x="72" y="108" width="8" height="36" rx="2" fill="rgba(159,225,203,0.5)"/>
-          <rect x="84" y="100" width="8" height="44" rx="2" fill="#9FE1CB"/>
-          <rect x="96" y="108" width="8" height="36" rx="2" fill="rgba(159,225,203,0.6)"/>
-          <rect x="108" y="104" width="8" height="40" rx="2" fill="rgba(159,225,203,0.7)"/>
-
-          <!-- RBAC / governance panel -->
-          <rect x="138" y="94" width="62" height="56" rx="4" fill="rgba(255,255,255,0.05)"/>
-          <text x="148" y="109" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">RBAC</text>
-          <rect x="144" y="114" width="36" height="4" rx="2" fill="rgba(159,225,203,0.6)"/>
-          <rect x="144" y="122" width="28" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
-          <rect x="144" y="130" width="44" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
-          <rect x="144" y="138" width="20" height="4" rx="2" fill="rgba(159,225,203,0.4)"/>
-
-          <!-- phase ribbon at bottom -->
-          <text x="40" y="172" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.3)">Discovery → Staging → Migration → Rollout</text>
-        </svg>
+      <div class="cs-toggle"><span class="cs-read c-sage">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="6">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The problem</p>
+          <p class="detail-p">Multiple logins per user drove drop-offs. No centralized access control created security and compliance gaps. Manual provisioning slowed onboarding. <strong>Limited auditability left the organization blind to user activity.</strong></p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Core capabilities delivered</p>
+          <ul class="detail-list">
+            <li><strong>Unified authentication</strong> — single login across all products via OAuth 2.0 + OpenID Connect</li>
+            <li><strong>RBAC authorization</strong> — role-based permissions across apps (Admin, Ops, Merchant, Finance)</li>
+            <li><strong>Admin console</strong> — centralized user provisioning, access control, and bulk management</li>
+            <li><strong>Multi-tenant support</strong> — isolated environments for internal teams vs merchant organizations</li>
+            <li><strong>Security layer</strong> — MFA, session management, anomaly detection, full audit logging</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Key architectural decisions</p>
+          <p class="detail-p"><strong>Stateless JWT tokens</strong> for horizontal scalability. <strong>API-first architecture</strong> for fast product integration. <strong>Centralized policy engine</strong> for consistent enforcement across all services.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-sage">90%+</div><div class="dm-label">Adoption across all platforms</div></div>
+            <div class="dm-card"><div class="dm-num c-gold">60%</div><div class="dm-label">Fewer password reset support tickets</div></div>
+            <div class="dm-card"><div class="dm-num c-amber">70%</div><div class="dm-label">Faster provisioning &amp; deprovisioning</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">0</div><div class="dm-label">Security incidents post-launch</div></div>
+          </div>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
-    <!-- 6. PAYQR -->
-    <div class="case-card reverse">
-      <div class="case-content">
-        <div>
-          <span class="case-tag tag-qr">Payments · Regulation · Partnerships</span>
-          <h2>PayQR — Navigating Regulation to Empower Merchants</h2>
-          <p>
-            The Central Bank mandated a universal QR standard for mobile money — but only banks could issue the codes. As a fintech, we were locked out by regulation while our merchants bled. I turned the constraint into a strategy: partner with a licensed bank, own the merchant experience, and use their rails to issue compliant QR codes under our brand. The result was PayQR — a dynamic, high-contrast QR generator with a Merchant Soundbox for instant audio confirmation, plus a static fallback for low-connectivity markets. Within 30 days of launch, DAU climbed 12% and the churn bleeding stopped.
-          </p>
-        </div>
-        <div class="case-meta">
-          <div class="case-meta-item">
-            <span class="meta-val">+12%</span>
-            <span class="meta-key">DAU in 30 days</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">–15%</span>
-            <span class="meta-key">Merchant churn reversed</span>
-          </div>
-          <div class="case-meta-item">
-            <span class="meta-val">All MOMO</span>
-            <span class="meta-key">Providers supported</span>
-          </div>
-        </div>
+    <!-- CARD 7 -->
+    <div class="cs-card" data-id="7" data-tags="regtech credit" onclick="toggleCard(this)">
+      <p class="cs-tag c-muted"><span class="dot d-muted"></span>RegTech · Compliance Automation</p>
+      <p class="cs-number">07</p>
+      <h3 class="cs-title">CBK Report Automation — Regulatory Reporting for the Central Bank of Kenya</h3>
+      <p class="cs-excerpt">Monthly CBK reports were built on spreadsheets, manual extraction, and hope. I led the end-to-end automation that eliminated compliance risk at scale.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-muted">100%</span>
+        <span class="cs-metric-label">On-time, accurate submission rate — every single month</span>
       </div>
-      <div class="case-visual" style="background: #3C3489;">
-        <svg class="card-illustration" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- QR code graphic -->
-          <rect x="70" y="30" width="100" height="100" rx="8" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
-          <!-- QR corner squares -->
-          <rect x="80" y="40" width="22" height="22" rx="3" fill="rgba(255,255,255,0.5)"/>
-          <rect x="84" y="44" width="14" height="14" rx="1.5" fill="#3C3489"/>
-          <rect x="86" y="46" width="10" height="10" rx="1" fill="rgba(255,255,255,0.5)"/>
+      <div class="cs-toggle"><span class="cs-read c-muted">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="7">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The situation</p>
+          <p class="detail-p">Every month, the credit ops team manually extracted data from multiple systems, consolidated in spreadsheets, and submitted to the CBK. The process depended on staff availability. <strong>Human error in regulatory reports wasn't an inconvenience — it was a compliance liability. Delayed submissions risked regulatory penalties.</strong></p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">My role</p>
+          <ul class="detail-list">
+            <li>Defined the product strategy and compliance workflow architecture</li>
+            <li>Led discovery with compliance, credit, engineering, and data teams</li>
+            <li>Translated CBK reporting requirements into technical product requirements</li>
+            <li>Drove stakeholder alignment between operations, legal/compliance, and engineering</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">What we built</p>
+          <p class="detail-p">An automated reporting pipeline integrating the <strong>Loan Management System</strong> and <strong>Zoho CRM</strong>, with centralized report orchestration, automated monthly scheduling, pre-transmission validation, a secure compliance-grade transmission layer, and full audit logging. Built as a reusable framework for future regulatory integrations.</p>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-muted">100%</div><div class="dm-label">Submission accuracy &amp; on-time rate</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">Days→Hrs</div><div class="dm-label">Reporting turnaround time</div></div>
+            <div class="dm-card"><div class="dm-num c-gold">0</div><div class="dm-label">Compliance penalties or missed deadlines</div></div>
+          </div>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
+      </div>
+    </div>
 
-          <rect x="138" y="40" width="22" height="22" rx="3" fill="rgba(255,255,255,0.5)"/>
-          <rect x="142" y="44" width="14" height="14" rx="1.5" fill="#3C3489"/>
-          <rect x="144" y="46" width="10" height="10" rx="1" fill="rgba(255,255,255,0.5)"/>
-
-          <rect x="80" y="98" width="22" height="22" rx="3" fill="rgba(255,255,255,0.5)"/>
-          <rect x="84" y="102" width="14" height="14" rx="1.5" fill="#3C3489"/>
-          <rect x="86" y="104" width="10" height="10" rx="1" fill="rgba(255,255,255,0.5)"/>
-
-          <!-- QR data dots -->
-          <rect x="110" y="40" width="6" height="6" rx="1" fill="rgba(255,255,255,0.4)"/>
-          <rect x="120" y="40" width="6" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-          <rect x="110" y="50" width="6" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-          <rect x="120" y="50" width="6" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
-          <rect x="110" y="60" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>
-          <rect x="138" y="70" width="6" height="6" rx="1" fill="rgba(255,255,255,0.4)"/>
-          <rect x="148" y="70" width="6" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-          <rect x="138" y="80" width="6" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
-          <rect x="148" y="80" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>
-          <rect x="110" y="98" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>
-          <rect x="120" y="98" width="6" height="6" rx="1" fill="rgba(255,255,255,0.3)"/>
-          <rect x="138" y="98" width="6" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-          <rect x="148" y="98" width="6" height="6" rx="1" fill="rgba(255,255,255,0.4)"/>
-          <rect x="110" y="108" width="6" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-          <rect x="120" y="108" width="6" height="6" rx="1" fill="rgba(255,255,255,0.4)"/>
-
-          <!-- scan line -->
-          <line x1="70" y1="80" x2="170" y2="80" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-dasharray="3,2"/>
-
-          <!-- soundbox / notification below -->
-          <rect x="85" y="145" width="70" height="34" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-          <!-- sound waves -->
-          <path d="M100 162 Q105 155 105 162 Q105 169 100 162Z" fill="rgba(255,255,255,0.7)"/>
-          <path d="M107 158 Q113 162 107 166" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" fill="none"/>
-          <path d="M111 155 Q119 162 111 169" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none"/>
-          <text x="122" y="165" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Payment!</text>
-
-          <!-- MOMO providers label -->
-          <text x="72" y="193" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.45)">Tigo · Vodacom · All MOMO</text>
-        </svg>
+    <!-- CARD 8 -->
+    <div class="cs-card" data-id="8" data-tags="credit infra" onclick="toggleCard(this)">
+      <p class="cs-tag c-gold"><span class="dot d-gold"></span>Credit · Automation · Fintech</p>
+      <p class="cs-number">08</p>
+      <h3 class="cs-title">Automated CRB Check on Loan Tab</h3>
+      <p class="cs-excerpt">Manual CRB checks were slowing down merchant lending, inflating costs, and creating inconsistent customer experiences. I designed a smart, event-driven credit assessment system that balanced speed, compliance, and cost discipline.</p>
+      <div class="cs-metric">
+        <span class="cs-metric-num c-gold">1 call</span>
+        <span class="cs-metric-label">Per merchant per 30-day window — maximum CRB API cost cap enforced by design</span>
+      </div>
+      <div class="cs-toggle"><span class="cs-read c-gold">Read case study</span><span class="cs-arrow">+</span></div>
+    </div>
+    <div class="cs-detail" data-for="8">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <p class="detail-h">The problem</p>
+          <p class="detail-p">At Pesapal, creditworthiness checks through CRB providers were handled manually — creating a slow, expensive, and inconsistent experience on both sides of the lending relationship.</p>
+          <ul class="detail-list" style="margin-top:10px;">
+            <li><strong>Merchant side</strong> — delayed eligibility feedback, no transparency on qualification status, friction from manual review processes</li>
+            <li><strong>Business side</strong> — high operational overhead, repeated CRB API costs, inconsistent auditability, slow loan funnel conversion</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">My role</p>
+          <ul class="detail-list">
+            <li>Led product discovery and requirements definition</li>
+            <li>Designed business rules with compliance and credit teams</li>
+            <li>Coordinated API workflow with engineering</li>
+            <li>Defined the cost optimization strategy for CRB provider usage</li>
+            <li>Drove rollout planning and cross-functional stakeholder alignment</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Product strategy</p>
+          <div class="pull-quote">"Balance speed, compliance, and operational cost efficiency — don't just automate, design smart."</div>
+          <p class="detail-p" style="margin-top:12px;">Three core product decisions shaped the solution:</p>
+          <ul class="detail-list" style="margin-top:8px;">
+            <li><strong>Trigger on user intent only</strong> — CRB checks fire only when a merchant clicks the Loan tab or applies for credit, not on a blanket schedule. Eliminates unnecessary provider calls.</li>
+            <li><strong>30-day result caching</strong> — stored CRB status reused within 30 days; new check triggered only when stale. Balances compliance freshness with API spend.</li>
+            <li><strong>Opt-in driven eligibility</strong> — checks only run for merchants who explicitly opted into Pesapal Credit, aligning with consent and data privacy requirements.</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Business rules implemented</p>
+          <ul class="detail-list">
+            <li><strong>Opt-in only</strong> — checks run only for opted-in merchants</li>
+            <li><strong>First access trigger</strong> — initial CRB check on first loan interaction</li>
+            <li><strong>30-day validity window</strong> — stored result reused within the window</li>
+            <li><strong>Action-based refresh</strong> — refresh only when merchant re-engages</li>
+            <li><strong>No idle processing</strong> — zero blanket background CRB refreshes</li>
+            <li><strong>Audit logging</strong> — every CRB response stored with full metadata</li>
+            <li><strong>Cost cap</strong> — maximum 1 CRB call per merchant per 30-day window</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Technical trade-offs</p>
+          <ul class="detail-list">
+            <li><strong>Cached CRB results</strong> — reduced costs vs slightly older data (acceptable within 30-day compliance window)</li>
+            <li><strong>On-demand refresh</strong> — lower infrastructure load vs delayed refresh for inactive users</li>
+            <li><strong>Event-driven triggers</strong> — efficient system activity aligned with actual business intent</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Impact</p>
+          <div class="detail-metrics">
+            <div class="dm-card"><div class="dm-num c-gold">Instant</div><div class="dm-label">Merchant eligibility feedback at loan tab</div></div>
+            <div class="dm-card"><div class="dm-num c-terra">↓ Cost</div><div class="dm-label">Reduced redundant CRB provider API calls</div></div>
+            <div class="dm-card"><div class="dm-num c-teal">↓ Ops</div><div class="dm-label">Manual CRB processing workload eliminated</div></div>
+            <div class="dm-card"><div class="dm-num c-rust">100%</div><div class="dm-label">Audit coverage — every CRB response logged</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <p class="detail-h">Key learnings</p>
+          <ul class="detail-list">
+            <li><strong>Automation alone is not enough</strong> — the real value came from smart refresh logic, not simply automating every CRB request</li>
+            <li><strong>Cost-aware product design matters in fintech</strong> — third-party integrations scale costs quickly; billing models must be considered at the product design stage</li>
+            <li><strong>Event-driven systems improve efficiency</strong> — triggering only on meaningful merchant actions reduced waste and aligned system activity with real business intent</li>
+          </ul>
+        </div>
+        <button class="detail-close" onclick="closeDetail(this)">↑ Collapse</button>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- PHILOSOPHY QUOTE -->
-<div class="philosophy" id="about">
-  <blockquote>
-    The best products don't just solve problems — they make people feel like the world understood them.
-  </blockquote>
-  <cite>— Winnie Akolenge, Tech Product Manager</cite>
-  <p style="margin-top: 32px; font-size: 16px; color: var(--ink-muted); line-height: 1.75; max-width: 600px; margin-left: auto; margin-right: auto;">
-    I've built across hospitality, lending, payments infrastructure, and security — always with the same north star:
-    what does the person on the other end of this screen actually need? I pair that empathy with rigorous strategy,
-    clean prioritization, and close partnership with engineering and design to ship products that hold up in the real world.
-  </p>
-</div>
-
-<!-- SKILLS -->
-<div class="skills-strip" id="skills">
-  <div class="skills-strip-inner">
-    <h3>What I bring to the table</h3>
-    <div class="skills-list">
-      <span class="skill-pill">Product Strategy</span>
-      <span class="skill-pill">Embedded Finance</span>
-      <span class="skill-pill">User Research</span>
-      <span class="skill-pill">Agile / Sprint Planning</span>
-      <span class="skill-pill">RICE Prioritization</span>
-      <span class="skill-pill">API Product Design</span>
-      <span class="skill-pill">Regulatory Compliance (CBK)</span>
-      <span class="skill-pill">Cross-functional Leadership</span>
-      <span class="skill-pill">Go-to-Market Strategy</span>
-      <span class="skill-pill">Credit Lifecycle</span>
-      <span class="skill-pill">Identity & Access Management</span>
-      <span class="skill-pill">Payments Infrastructure</span>
-      <span class="skill-pill">North Star Metrics</span>
-      <span class="skill-pill">SME / B2B Platforms</span>
-      <span class="skill-pill">Dual-sided Marketplaces</span>
-      <span class="skill-pill">Storytelling</span>
+<!-- ══ ABOUT ══ -->
+<section class="section about-bg" id="about" style="border-top: 1px solid var(--border);">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">About</p>
+      <h2 class="section-title">The person<br>behind the product</h2>
     </div>
+  </div>
+  <div class="about-grid reveal">
+    <div>
+      <p class="about-text">I'm a Technical Product Manager with <em>13 years building at the intersection of fintech, engineering, and emerging markets</em>. My work lives in the details no one notices until they break — authentication flows, settlement ledgers, regulatory pipelines — and in the big swings that redefine what a product can be.</p>
+      <p class="about-text" style="margin-top:1.4rem;">I care deeply about <em>products that actually work for people</em> — merchants in Nairobi managing loan repayments, restaurants surviving a pandemic, analysts who just want their dashboards to load. I've shipped platforms that handled real money and real compliance stakes, in markets where the margin for error is thin.</p>
+      <p class="about-text" style="margin-top:1.4rem;">I tell stories because I believe the best products begin with <em>understanding the human problem</em> — before writing a single line of code or a single JIRA ticket.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:2rem;">
+        <a href="https://www.linkedin.com/in/situwinnie/" target="_blank" class="btn-linkedin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn Profile
+        </a>
+      </div>
+    </div>
+    <div>
+      <p class="about-aside-label">What I bring to the table</p>
+      <div class="about-pillars">
+        <div class="about-pillar">
+          <span class="about-pillar-icon">🏗️</span>
+          <div>
+            <p class="about-pillar-title">Builder</p>
+            <p class="about-pillar-desc">I've taken 8 products from 0→1 and scaled them across multiple African markets.</p>
+          </div>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-icon">🔍</span>
+          <div>
+            <p class="about-pillar-title">Problem Solver</p>
+            <p class="about-pillar-desc">I find the constraint behind the constraint — whether regulatory, technical, or human.</p>
+          </div>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-icon">🌍</span>
+          <div>
+            <p class="about-pillar-title">Emerging Market Expert</p>
+            <p class="about-pillar-desc">I understand how fintech actually works across Kenya, Tanzania, Uganda, and beyond.</p>
+          </div>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-icon">⚙️</span>
+          <div>
+            <p class="about-pillar-title">Technically Fluent</p>
+            <p class="about-pillar-desc">13 years of frontend dev background means I code, review PRs, and speak engineering natively.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section class="section" id="skills" style="border-top: 1px solid var(--border); background: var(--bg);">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Expertise</p>
+      <h2 class="section-title">Skills &amp; Craft</h2>
+    </div>
+    <p class="section-sub">A decade-plus at the intersection of product, engineering, and fintech — these are the tools I reach for every day.</p>
+  </div>
+
+  <div class="skills-two-col reveal">
+
+    <!-- PM SKILLS -->
+    <div>
+      <p class="skill-group-label">Product Management</p>
+
+      <div class="skill-bars" style="margin-bottom:2.2rem;">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Product Strategy &amp; Vision</span><span class="skill-bar-level">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.97"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Roadmap Planning &amp; Prioritisation</span><span class="skill-bar-level">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.95"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">User Research &amp; Discovery</span><span class="skill-bar-level">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.88"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Stakeholder Management</span><span class="skill-bar-level">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.96"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Data-Driven Decision Making</span><span class="skill-bar-level">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Cross-Functional Leadership</span><span class="skill-bar-level">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.94"></div></div>
+        </div>
+      </div>
+
+      <p class="skill-group-label">Frameworks &amp; Methods</p>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Jobs-to-be-Done</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">Shape Up</span>
+        <span class="skill-tag">RICE Scoring</span>
+        <span class="skill-tag secondary">Design Sprints</span>
+        <span class="skill-tag secondary">User Story Mapping</span>
+      </div>
+
+      <p class="skill-group-label" style="margin-top:2rem;">Tools</p>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Jira</span>
+        <span class="skill-tag highlight">Confluence</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Notion</span>
+        <span class="skill-tag secondary">Zoho CRM</span>
+        <span class="skill-tag secondary">Apache Superset</span>
+      </div>
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div>
+      <p class="skill-group-label">Technical</p>
+
+      <div class="skill-bars" style="margin-bottom:6.4rem;">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Frontend Development</span><span class="skill-bar-level">Expert · 13 yrs</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.96; background: var(--gold);"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">API Design &amp; Integration</span><span class="skill-bar-level">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.94; background: var(--gold);"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">System Architecture &amp; Design</span><span class="skill-bar-level">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.88; background: var(--amber);"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Security &amp; Identity (IAM / SSO)</span><span class="skill-bar-level">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.83; background: var(--teal);"></div></div>
+        </div>
+      </div>
+
+      <p class="skill-group-label">Fintech Domain</p>
+      <div class="skill-tags" style="margin-bottom:1.6rem;">
+        <span class="skill-tag highlight">Payments Infrastructure</span>
+        <span class="skill-tag highlight">Card Issuing &amp; Acquiring</span>
+        <span class="skill-tag">MOMO / Mobile Money</span>
+        <span class="skill-tag">QR Interoperability</span>
+        <span class="skill-tag">Merchant Credit</span>
+        <span class="skill-tag">Embedded Finance</span>
+        <span class="skill-tag secondary">CRB / Credit Scoring</span>
+        <span class="skill-tag secondary">Regulatory Reporting</span>
+        <span class="skill-tag secondary">KYC / AML</span>
+      </div>
+
+      <p class="skill-group-label">Languages &amp; Tech Stack</p>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">JavaScript / TypeScript</span>
+        <span class="skill-tag highlight">Vue</span>
+        <span class="skill-tag">HTML &amp; CSS</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">OAuth 2.0 / OIDC</span>
+        <span class="skill-tag secondary">.NET</span>
+        <span class="skill-tag secondary">Docker</span>
+        <span class="skill-tag secondary">Git</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CTA STRIP ══ -->
+<div class="cta-strip reveal">
+  <div class="cta-strip-text">
+    <p class="cta-strip-eyebrow">Let's connect</p>
+    <h3 class="cta-strip-heading">Building something ambitious in fintech?<br>Let's talk.</h3>
+    <p class="cta-strip-sub">Open to PM roles, advisory engagements, and fintech partnerships across Africa.</p>
+  </div>
+  <div class="cta-strip-actions">
+    <a href="https://www.linkedin.com/in/situwinnie/" target="_blank" class="btn-linkedin">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      View LinkedIn
+    </a>
+    <a href="mailto:akolengewinnie@gmail.com" class="btn-resume">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email Me
+    </a>
   </div>
 </div>
 
-<!-- CONTACT -->
-<div class="contact-bar">
-  <p>Want to talk product, collaboration, or your next big idea? <strong>Let's connect.</strong></p>
-  <a href="mailto:akolengewinnie@gmail.com" class="cta-btn">Get in touch →</a>
-</div>
-
+<!-- ══ FOOTER ══ -->
 <footer>
-  © 2026 Winnie Akolenge · Senior Product Manager
+  <div style="display:flex; align-items:center; gap:16px; justify-content: center;">
+    <span style="font-size:12px; color:rgba(251,244,232,0.45);"> © 2026</span> 
+    <span style="font-size:12px; color:rgba(251,244,232,0.3);">·</span> 
+    <span style="font-size:12px; color:rgba(251,244,232,0.45);">Winnie Akolenge</span>
+    <span style="font-size:12px; color:rgba(251,244,232,0.3);">·</span>
+    <span style="font-size:12px; color:rgba(251,244,232,0.45);">Technical Product Manager</span>
+  </div>
 </footer>
 
+<script>
+function toggleCard(card) {
+  const id = card.dataset.id;
+  const detail = document.querySelector('.cs-detail[data-for="' + id + '"]');
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.cs-card.open').forEach(c => c.classList.remove('open'));
+  document.querySelectorAll('.cs-detail.open').forEach(d => d.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    detail.classList.add('open');
+    setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+  }
+}
+function closeDetail(btn) {
+  const detail = btn.closest('.cs-detail');
+  const id = detail.dataset.for;
+  const card = document.querySelector('.cs-card[data-id="' + id + '"]');
+  detail.classList.remove('open');
+  card.classList.remove('open');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.cs-card').forEach(card => {
+      const tags = card.dataset.tags || '';
+      const show = filter === 'all' || tags.includes(filter);
+      card.style.display = show ? '' : 'none';
+      if (!show) {
+        const detail = document.querySelector('.cs-detail[data-for="' + card.dataset.id + '"]');
+        if (detail) detail.classList.remove('open');
+        card.classList.remove('open');
+      }
+    });
+  });
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // animate skill bars inside this revealed element
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const w = bar.style.getPropertyValue('--w') || bar.style.cssText.match(/--w:([\d.]+)/)?.[1];
+        if (w) bar.style.transform = `scaleX(${w})`;
+        bar.classList.add('animated');
+      });
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
